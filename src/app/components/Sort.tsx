@@ -6,7 +6,7 @@ interface Props {
 export default function Sort({ sortStatuses, toggleSortStatus }: Props) {
   return (
     <div className="flex gap-2">
-      <label className="flex items-center gap-1">
+      <label className="flex items-center gap-1 text-gray-600">
         <input
           type="checkbox"
           onChange={() => toggleSortStatus("NEW")}
@@ -14,7 +14,7 @@ export default function Sort({ sortStatuses, toggleSortStatus }: Props) {
         />
         NEW
       </label>
-      <label className="flex items-center gap-1">
+      <label className="flex items-center gap-1 text-gray-600">
         <input
           type="checkbox"
           onChange={() => toggleSortStatus("DONE")}
@@ -22,7 +22,7 @@ export default function Sort({ sortStatuses, toggleSortStatus }: Props) {
         />
         DONE
       </label>
-      <label className="flex items-center gap-1">
+      <label className="flex items-center gap-1 text-gray-600">
         <input
           type="checkbox"
           onChange={() => toggleSortStatus("IN PROGRESS")}

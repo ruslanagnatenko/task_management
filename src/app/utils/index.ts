@@ -30,17 +30,6 @@ export default class Task {
     updateDescription(newDesc: string) {
         this.description = newDesc;
     }
-
-    toJSON() {
-        return {
-            ...this,
-            methods: {
-                updateStatus: this.updateStatus,
-                updatePriority: this.updatePriority,
-                updateDescription: this.updateDescription,
-            },
-        };
-    }
 }
 
 export const taskType = new Task('');

@@ -26,9 +26,10 @@ export default function Tasks({ tasks, setEditingTask, deleteTask }: Props) {
   };
 
   const filteredTasks = tasks.filter((task) => {
-    const statusMatch = !filter.status || task.status === filter.status;
-    const priorityMatch = !filter.priority || task.priority === filter.priority;
-    return statusMatch && priorityMatch;
+    return (
+      (!filter.status || task.status === filter.status) &&
+      (!filter.priority || task.priority === filter.priority)
+    );
   });
 
   const preparedTasks = sortStatuses.length
@@ -42,7 +43,7 @@ export default function Tasks({ tasks, setEditingTask, deleteTask }: Props) {
     : filteredTasks;
 
   return (
-    <div className="flex flex-col gap-3 max-h-64 overflow-auto">
+    <>
       {tasks.length > 0 && (
         <div className="flex flex-col gap-2 mb-2">
           <Filters filter={filter} setFilter={setFilter} />
@@ -54,19 +55,21 @@ export default function Tasks({ tasks, setEditingTask, deleteTask }: Props) {
         </div>
       )}
 
-      {preparedTasks.length > 0 &&
-        preparedTasks.map((task) => (
-          <Task
-            task={task}
-            deleteTask={deleteTask}
-            setEditingTask={setEditingTask}
-            key={task.id}
-          />
-        ))}
+      <div className="flex flex-col gap-3 max-h-64 overflow-auto">
+        {preparedTasks.length > 0 &&
+          preparedTasks.map((task) => (
+            <Task
+              task={task}
+              deleteTask={deleteTask}
+              setEditingTask={setEditingTask}
+              key={task.id}
+            />
+          ))}
 
-      {!preparedTasks.length && tasks.length > 0 && (
-        <p className="text-gray-500">No tasks</p>
-      )}
-    </div>
+        {!preparedTasks.length && tasks.length > 0 && (
+          <p className="text-gray-500">No tasks</p>
+        )}
+      </div>
+    </>
   );
 }
